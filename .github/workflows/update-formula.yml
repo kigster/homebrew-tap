@@ -94,6 +94,8 @@ jobs:
           EOF
 
       - name: Commit and push if changed
+        env:
+          TAG: ${{ github.event.inputs.tag || github.event.client_payload.tag }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
