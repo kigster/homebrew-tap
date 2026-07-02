@@ -5,7 +5,7 @@
 class Sopsy < Formula
   desc "The missing developer experience for SOPS"
   homepage "https://github.com/kigster/sopsy"
-  version "1.1.2"
+  version "1.2.0"
   license "MIT"
 
   depends_on "age"
@@ -15,23 +15,23 @@ class Sopsy < Formula
     depends_on "age-plugin-se"
 
     on_arm do
-      url "https://github.com/kigster/sopsy/releases/download/v1.1.2/sopsy-aarch64-apple-darwin.tar.gz"
-      sha256 "e83bfc83ffa9ade2ce01538e60afe4d25891ee6c33ffb992da76e245863015dd"
+      url "https://github.com/kigster/sopsy/releases/download/v1.2.0/sopsy-aarch64-apple-darwin.tar.gz"
+      sha256 "f83be3b5eec34a84e50b55b3e8bf78af5d12cf54723b685ea75edc086ca1a963"
     end
     on_intel do
-      url "https://github.com/kigster/sopsy/releases/download/v1.1.2/sopsy-x86_64-apple-darwin.tar.gz"
-      sha256 "1995a65a49262b325eebc31bb5cfb49850bcdf02f3387f21aa5bdc6b7e4bb948"
+      url "https://github.com/kigster/sopsy/releases/download/v1.2.0/sopsy-x86_64-apple-darwin.tar.gz"
+      sha256 "0d944878dcf3b1c0da59e62f275f7b927b626dc7f91f0e00414719639ba1c56c"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/kigster/sopsy/releases/download/v1.1.2/sopsy-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "857fd84edc20f6b5ad5bf018681780f09191679d3e1337319b595a48aeaeccc3"
+      url "https://github.com/kigster/sopsy/releases/download/v1.2.0/sopsy-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "f9268c076f215e5439da45ea7ff25944d090da9e16dd3ca88760146c44be52ff"
     end
     on_intel do
-      url "https://github.com/kigster/sopsy/releases/download/v1.1.2/sopsy-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "5124d0d3f5c6b53aa04f8e780351e853028f05352b1dd20e0a2fab74405524c6"
+      url "https://github.com/kigster/sopsy/releases/download/v1.2.0/sopsy-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "6a69f5c3528d4858db369fac40535af5e07bbfe605f64400cc693052506e911f"
     end
   end
 
