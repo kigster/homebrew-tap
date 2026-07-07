@@ -6,6 +6,7 @@ developer experience for [SOPS](https://github.com/getsops/sops).
 ## Install
 
 ```bash
+brew trust kigster/tap
 brew install kigster/tap/sopsy
 ```
 
