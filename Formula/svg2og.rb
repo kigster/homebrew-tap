@@ -10,13 +10,15 @@ class Svg2og < Formula
 
   depends_on :macos
 
-  on_arm do
-    url "https://github.com/kigster/svg2og/releases/download/v0.1.0/svg2og-aarch64-apple-darwin.tar.gz"
-    sha256 "273ac3ba42bf1b5d887980a50ff059a1a28997f2c1b63c753db70fed2c71c232"
-  end
-  on_intel do
-    url "https://github.com/kigster/svg2og/releases/download/v0.1.0/svg2og-x86_64-apple-darwin.tar.gz"
-    sha256 "eb1d36ec1af6fbde9b9fb51b30f73418d1b46a36cdbbede28aa6c3475dfe1b99"
+  on_macos do
+    on_arm do
+      url "https://github.com/kigster/svg2og/releases/download/v0.1.0/svg2og-aarch64-apple-darwin.tar.gz"
+      sha256 "273ac3ba42bf1b5d887980a50ff059a1a28997f2c1b63c753db70fed2c71c232"
+    end
+    on_intel do
+      url "https://github.com/kigster/svg2og/releases/download/v0.1.0/svg2og-x86_64-apple-darwin.tar.gz"
+      sha256 "eb1d36ec1af6fbde9b9fb51b30f73418d1b46a36cdbbede28aa6c3475dfe1b99"
+    end
   end
 
   def install
