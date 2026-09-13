@@ -5,7 +5,7 @@
 class AgentLock < Formula
   desc "Advisory locks for the coding agents that share one checkout"
   homepage "https://github.com/kigster/agent-lock"
-  url "https://rubygems.org/downloads/agent-lock-0.1.0.gem"
+  url "https://rubygems.org/downloads/agent-lock-0.2.1.gem"
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   license "MIT"
 
@@ -29,7 +29,7 @@ class AgentLock < Formula
     system "gem", "install", cached_download, "--no-document", "--ignore-dependencies"
 
     # Both names, since `alo` is the one anybody types twice.
-    %w[agent-lock alo].each do |program|
+    %w[agent-lock alock].each do |program|
       (bin/program).write_env_script libexec/"bin/#{program}", GEM_HOME: ENV["GEM_HOME"]
     end
   end
@@ -42,14 +42,14 @@ class AgentLock < Formula
     (testpath/"lib/thing.rb").write("# stub\n")
 
     with_env(AGENT_ID: "brew-test") do
-      assert_match "ACQUIRED lib/**", shell_output("#{bin}/alo acquire lib 'brew test' --dir #{testpath}")
-      assert_match "YOURS lib/**", shell_output("#{bin}/alo check lib/thing.rb --dir #{testpath}")
-      assert_match "RELEASED lib/**", shell_output("#{bin}/alo release lib --dir #{testpath}")
+      assert_match "ACQUIRED lib/**", shell_output("#{bin}/alock acquire lib 'brew test' --dir #{testpath}")
+      assert_match "YOURS lib/**", shell_output("#{bin}/alock check lib/thing.rb --dir #{testpath}")
+      assert_match "RELEASED lib/**", shell_output("#{bin}/alock release lib --dir #{testpath}")
     end
 
     # A lock the tap did not take must read as free, and exit 0.
     with_env(AGENT_ID: "brew-test-other") do
-      assert_match "FREE", shell_output("#{bin}/alo check lib --dir #{testpath}")
+      assert_match "FREE", shell_output("#{bin}/alock check lib --dir #{testpath}")
     end
   end
 end
