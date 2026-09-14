@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Point a gem-backed formula at a version on RubyGems.
+#
+#   bin/update-formula agent-lock 0.1.0
+#
+# Reads the released gem's checksum from the RubyGems API rather than
+# downloading and hashing it, so this is one call and cannot disagree with what
+# `gem install` would verify. Rewrites the formula's `url`, `sha256` and
+# `version` in place and leaves everything else alone.
+#
+# The two Rust formulae here are refreshed by GitHub Actions when a release
+# publishes its binaries. A gem has no such assets, so this is the equivalent:
+# run it once after `gem push`, commit, done.
+#
+# © 2026 Konstantin Gredeskoul
+
+require "json"
+require "net/http"
+require "uri"
+
+name, version = ARGV
+abort "usage: #{File.basename($PROGRAM_NAME)} <gem-name> <version>" if name.nil? || version.nil?
+
+formula = File.expand_path("../Formula/#{name}.rb", __dir__)
+abort "no formula at #{formula}" unless File.file?(formula)
+
+uri = URI("https://rubygems.org/api/v2/rubygems/#{name}/versions/#{version}.json")
+response = Net::HTTP.get_response(uri)
+abort "rubygems.org said #{response.code} for #{name} #{version}" unless response.is_a?(Net::HTTPSuccess)
+
+sha256 = JSON.parse(response.body).fetch("sha")
+abort "no checksum in the response for #{name} #{version}" if sha256.to_s.empty?
+
+source = File.read(formula)
+updated = source
+  .sub(%r{url "https://rubygems\.org/downloads/#{Regexp.escape(name)}-[^"]+\.gem"},
+    %(url "https://rubygems.org/downloads/#{name}-#{version}.gem"))
+  .sub(/^  sha256 "[0-9a-f]{64}"$/, %(  sha256 "#{sha256}"))
+
+abort "nothing changed; is #{name} #{version} already what the formula says?" if updated == source
+
+File.write(formula, updated)
+puts "#{name} #{version}"
+puts "  sha256 #{sha256}"
+puts "  #{formula.sub("#{Dir.home}/", "~/")}"

@@ -55,13 +55,15 @@ jobs:
 
             depends_on :macos
 
-            on_arm do
-              url "${base}/svg2og-aarch64-apple-darwin.tar.gz"
-              sha256 "${MAC_ARM}"
-            end
-            on_intel do
-              url "${base}/svg2og-x86_64-apple-darwin.tar.gz"
-              sha256 "${MAC_INTEL}"
+            on_macos do
+              on_arm do
+                url "${base}/svg2og-aarch64-apple-darwin.tar.gz"
+                sha256 "${MAC_ARM}"
+              end
+              on_intel do
+                url "${base}/svg2og-x86_64-apple-darwin.tar.gz"
+                sha256 "${MAC_INTEL}"
+              end
             end
 
             def install
