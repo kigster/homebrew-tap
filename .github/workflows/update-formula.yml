@@ -57,9 +57,11 @@ jobs:
 
             depends_on "age"
             depends_on "sops"
+            depends_on "ykman"
 
             on_macos do
               depends_on "age-plugin-se"
+              depends_on "age-plugin-yubikey"
 
               on_arm do
                 url "${base}/sopsy-aarch64-apple-darwin.tar.gz"
