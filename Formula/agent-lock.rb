@@ -5,33 +5,171 @@
 class AgentLock < Formula
   desc "Advisory locks for the coding agents that share one checkout"
   homepage "https://github.com/kigster/agent-lock"
-  url "https://rubygems.org/downloads/agent-lock-0.2.1.gem"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  url "https://rubygems.org/downloads/agent-lock-3.0.0.gem"
+  sha256 "c02e2c63037001ba2ebb674d5113499afd06e220044649fbe636b82d0eac79d5"
   license "MIT"
 
   # Its own Ruby, rather than the system one. macOS ships 2.6, the gem needs
   # 3.2 or newer, and installing into the system Ruby would want sudo.
   depends_on "ruby"
 
+  # The runtime dependencies of agent-lock.gemspec, and theirs, pinned.
+  resource "binding_of_caller" do
+    url "https://rubygems.org/downloads/binding_of_caller-2.0.0.gem"
+    sha256 "e53eebf8428a85587aede7b43a83e7419eb85b8b690938a96aa330d03052d517"
+  end
+
+  resource "concurrent-ruby" do
+    url "https://rubygems.org/downloads/concurrent-ruby-1.3.8.gem"
+    sha256 "b2f1be836e968ccc78ccfce277ea79c72a88633f22306782c16ff23fb415d1e1"
+  end
+
+  resource "connection_pool" do
+    url "https://rubygems.org/downloads/connection_pool-3.0.2.gem"
+    sha256 "33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a"
+  end
+
+  resource "debug_inspector" do
+    url "https://rubygems.org/downloads/debug_inspector-1.2.0.gem"
+    sha256 "9bdfa02eebc3da163833e6a89b154084232f5766087e59573b70521c77ea68a2"
+  end
+
   resource "dry-cli" do
     url "https://rubygems.org/downloads/dry-cli-1.4.1.gem"
     sha256 "b8015bb76c708aa8705a36faf694973e75eeeffca39b89c8e172dc6f66a7d874"
   end
 
+  resource "dry-cli-autocomplete" do
+    url "https://rubygems.org/downloads/dry-cli-autocomplete-0.6.0.gem"
+    sha256 "4a8b904cc802168ad1657a941cdf8dbec1915b4c825a35eb049fb0ac037947ca"
+  end
+
+  resource "dry-cli-help" do
+    url "https://rubygems.org/downloads/dry-cli-help-0.6.0.gem"
+    sha256 "10def4049bdae8c19e7412f3cefc062829048dbfa3a42155788b333c381766c9"
+  end
+
+  resource "dry-cli-ui" do
+    url "https://rubygems.org/downloads/dry-cli-ui-0.7.0.gem"
+    sha256 "2efc8570a0dbe8c0c6e31f2767ce18ca14d7ca639301206ef100adc69282c51d"
+  end
+
+  resource "dry-inflector" do
+    url "https://rubygems.org/downloads/dry-inflector-1.3.1.gem"
+    sha256 "7fb0c2bb04f67638f25c52e7ba39ab435d922a3a5c3cd196120f63accb682dcc"
+  end
+
+  resource "logger" do
+    url "https://rubygems.org/downloads/logger-1.7.0.gem"
+    sha256 "196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203"
+  end
+
+  resource "pastel" do
+    url "https://rubygems.org/downloads/pastel-0.8.0.gem"
+    sha256 "481da9fb7d2f6e6b1a08faf11fa10363172dc40fd47848f096ae21209f805a75"
+  end
+
+  resource "redis" do
+    url "https://rubygems.org/downloads/redis-5.4.1.gem"
+    sha256 "b5e675b57ad22b15c9bcc765d5ac26f60b675408af916d31527af9bd5a81faae"
+  end
+
+  resource "redis-client" do
+    url "https://rubygems.org/downloads/redis-client-0.31.0.gem"
+    sha256 "6820cb2a21e6795a823141f50fd25e655de2b8dc8ff833b43509a27b0263fd75"
+  end
+
+  resource "semantic_logger" do
+    url "https://rubygems.org/downloads/semantic_logger-5.2.0.gem"
+    sha256 "603fb25c6c216b0ec468eb19897f7b06e6fd54d41fd8974765ae03048a736fd9"
+  end
+
+  resource "strings" do
+    url "https://rubygems.org/downloads/strings-0.2.1.gem"
+    sha256 "933293b3c95cf85b81eb44b3cf673e3087661ba739bbadfeadf442083158d6fb"
+  end
+
+  resource "strings-ansi" do
+    url "https://rubygems.org/downloads/strings-ansi-0.2.0.gem"
+    sha256 "90262d760ea4a94cc2ae8d58205277a343409c288cbe7c29416b1826bd511c88"
+  end
+
+  resource "tty-box" do
+    url "https://rubygems.org/downloads/tty-box-0.7.0.gem"
+    sha256 "17f453a0c1df43871fdb6de461ee797b78574dacc652372fa2ae98a00785df8b"
+  end
+
+  resource "tty-color" do
+    url "https://rubygems.org/downloads/tty-color-0.6.0.gem"
+    sha256 "6f9c37ca3a4e2367fb2e6d09722762647d6f455c111f05b59f35730eeb24332a"
+  end
+
+  resource "tty-cursor" do
+    url "https://rubygems.org/downloads/tty-cursor-0.7.1.gem"
+    sha256 "79534185e6a777888d88628b14b6a1fdf5154a603f285f80b1753e1908e0bf48"
+  end
+
+  resource "tty-progressbar" do
+    url "https://rubygems.org/downloads/tty-progressbar-0.18.3.gem"
+    sha256 "6cbb4260e55e74a9180d502143eb6a467d2c8e51bf5f3c9509fb5cacc3d4a5f6"
+  end
+
+  resource "tty-prompt" do
+    url "https://rubygems.org/downloads/tty-prompt-0.23.1.gem"
+    sha256 "fcdbce905238993f27eecfdf67597a636bc839d92192f6a0eef22b8166449ec8"
+  end
+
+  resource "tty-reader" do
+    url "https://rubygems.org/downloads/tty-reader-0.9.0.gem"
+    sha256 "c62972c985c0b1566f0e56743b6a7882f979d3dc32ff491ed490a076f899c2b1"
+  end
+
+  resource "tty-screen" do
+    url "https://rubygems.org/downloads/tty-screen-0.8.2.gem"
+    sha256 "c090652115beae764336c28802d633f204fb84da93c6a968aa5d8e319e819b50"
+  end
+
+  resource "tty-spinner" do
+    url "https://rubygems.org/downloads/tty-spinner-0.9.3.gem"
+    sha256 "0e036f047b4ffb61f2aa45f5a770ec00b4d04130531558a94bfc5b192b570542"
+  end
+
+  resource "tty-table" do
+    url "https://rubygems.org/downloads/tty-table-0.12.0.gem"
+    sha256 "fdc27a4750835c1a16efe19a0b857e3ced3652cc7aceafe6dca94908965b9939"
+  end
+
+  resource "unicode-display_width" do
+    url "https://rubygems.org/downloads/unicode-display_width-2.6.0.gem"
+    sha256 "12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a"
+  end
+
+  resource "unicode_utils" do
+    url "https://rubygems.org/downloads/unicode_utils-1.4.0.gem"
+    sha256 "b922d0cf2313b6b7136ada6645ce7154ffc86418ca07d53b058efe9eb72f2a40"
+  end
+
+  resource "wisper" do
+    url "https://rubygems.org/downloads/wisper-2.0.1.gem"
+    sha256 "ce17bc5c3a166f241a2e6613848b025c8146fce2defba505920c1d1f3f88fae6"
+  end
+
   def install
     ENV["GEM_HOME"] = libexec
 
+    # Homebrew has already downloaded and verified every resource by now.
     resources.each do |dependency|
-      dependency.verify_download_integrity(dependency.fetch)
       system "gem", "install", dependency.cached_download, "--no-document", "--ignore-dependencies"
     end
 
     system "gem", "install", cached_download, "--no-document", "--ignore-dependencies"
 
-    # Both names, since `alo` is the one anybody types twice.
     %w[agent-lock alock].each do |program|
       (bin/program).write_env_script libexec/"bin/#{program}", GEM_HOME: ENV["GEM_HOME"]
     end
+
+    # The scripts register the short name only, so they are installed under it.
+    generate_completions_from_executable(bin/"alock", "completion", shells: [:bash, :zsh])
   end
 
   test do
@@ -41,13 +179,25 @@ class AgentLock < Formula
     (testpath/"lib").mkpath
     (testpath/"lib/thing.rb").write("# stub\n")
 
+    # The file store, so the test never touches a Redis that happens to answer.
+    ENV["AGENT_LOCK_BACKEND"] = "file"
+    ENV.delete("REDIS_URL")
+
     with_env(AGENT_ID: "brew-test") do
       assert_match "ACQUIRED lib/**", shell_output("#{bin}/alock acquire lib 'brew test' --dir #{testpath}")
       assert_match "YOURS lib/**", shell_output("#{bin}/alock check lib/thing.rb --dir #{testpath}")
+    end
+
+    # Somebody else's lock reads as held, on stderr, and exits 1.
+    with_env(AGENT_ID: "brew-test-other") do
+      assert_match "HELD", shell_output("#{bin}/alock check lib --dir #{testpath} 2>&1", 1)
+    end
+
+    with_env(AGENT_ID: "brew-test") do
       assert_match "RELEASED lib/**", shell_output("#{bin}/alock release lib --dir #{testpath}")
     end
 
-    # A lock the tap did not take must read as free, and exit 0.
+    # Once released, it reads as free to anybody, and exits 0.
     with_env(AGENT_ID: "brew-test-other") do
       assert_match "FREE", shell_output("#{bin}/alock check lib --dir #{testpath}")
     end

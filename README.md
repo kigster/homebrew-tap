@@ -36,8 +36,11 @@ afterward.
 
 ### agent-lock
 
-Installs the gem and both of its executables, `agent-lock` and the short `alo`,
-against Homebrew's own Ruby.
+Installs the gem and both of its executables, `agent-lock` and the short
+`alock`, against Homebrew's own Ruby, with bash and zsh completion for `alock`.
+Every runtime dependency in `agent-lock.gemspec`, and theirs, is pinned as a
+resource, including the `redis` gem for the Redis backend; no Redis server is
+installed, and without one `alock` uses its file store.
 
 > [!NOTE]
 > This is why the formula exists. macOS ships Ruby 2.6, the gem needs 3.2 or
