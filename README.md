@@ -27,9 +27,10 @@ brew install kigster/tap/sopsy
 ### sopsy
 
 Installs a prebuilt binary, so no Rust toolchain is required, along with the
-tools sopsy orchestrates: `sops`, `age`, and on macOS the Secure Enclave plugin
-`age-plugin-se`. Homebrew resolves those automatically, so there is no need to
-run `sopsy deps` afterward.
+tools sopsy orchestrates: `sops`, `age`, `ykman`, and on macOS the Secure
+Enclave plugin `age-plugin-se` and the YubiKey plugin `age-plugin-yubikey`.
+Homebrew resolves those automatically, so there is no need to run `sopsy deps`
+afterward.
 
 ### agent-lock
 
