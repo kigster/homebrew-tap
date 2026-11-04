@@ -7,6 +7,7 @@ Homebrew formulae for Konstantin's tools.
 | [sopsy](https://github.com/kigster/sopsy) | The missing developer experience for [SOPS](https://github.com/getsops/sops) | Prebuilt binary |
 | [svg2og](https://github.com/kigster/svg2og) | Convert Mermaid SVG exports for clean import into OmniGraffle | Prebuilt binary |
 | [agent-lock](https://github.com/kigster/agent-lock) | Advisory locks for the coding agents that share one checkout | Ruby gem |
+| [llm-evals](https://github.com/kigster/llm-evals) | Run evaluation suites against LLMs, then score and compare the results | Ruby gem |
 
 ## Install
 
@@ -16,6 +17,7 @@ brew tap kigster/tap
 brew install sopsy
 brew install svg2og
 brew install agent-lock
+brew install llm-evals
 ```
 
 Or without tapping first:
@@ -41,6 +43,17 @@ against Homebrew's own Ruby.
 > This is why the formula exists. macOS ships Ruby 2.6, the gem needs 3.2 or
 > newer, and `gem install` into the system Ruby wants `sudo`. Homebrew's Ruby
 > is neither of those problems.
+
+### llm-evals
+
+Installs the gem and both of its executables, `llm-evals` and the short
+`evals`, against Homebrew's own Ruby (the gem needs 3.4 or newer), with bash
+and zsh completion for `evals`.
+
+Every runtime dependency in `llm-evals.gemspec`, and theirs, is pinned as a
+resource. None of the gems the repository's Gemfile adds for development and
+tests are included. `bin/update-formula` moves only the gem itself, so a
+release that changes a dependency means regenerating that list as well.
 
 ## How formulae stay up to date
 
